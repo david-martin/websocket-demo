@@ -7,7 +7,7 @@ io.set('log level', 1);
 
 var staticPath = path.normalize(__dirname + "/../client/default");
 console.log('staticPath=' + staticPath);
-app.use(express.static(staticPath));
+app.use(express['static'](staticPath));
 
 var userCount = 0;
 var users = [];
@@ -29,7 +29,7 @@ io.sockets.on('connection', function(socket) {
 
   // update all clients with new userlist
   console.log('users:' + users.join(','));
-  io.sockets.in('room').emit('userlist', {
+  io.sockets['in']('room').emit('userlist', {
     users: users
   });
 
@@ -37,7 +37,7 @@ io.sockets.on('connection', function(socket) {
   socket.on('message', function(data) {
     var message = username + ': ' + data.message;
     // Emit to all clients
-    io.sockets.in('room').emit('message', {
+    io.sockets['in']('room').emit('message', {
       message: message
     });
     console.log('message=' + message);
@@ -50,10 +50,10 @@ io.sockets.on('connection', function(socket) {
 
     // update all clients with new userlist
     console.log('users:' + users.join(','));
-    io.sockets.in('room').emit('userlist', {
+    io.sockets['in']('room').emit('userlist', {
       users: users
     });
   });
 });
 
-app.listen(process.env.FH_PORT || 8888);
+app.listen(process.env.FH_PORT);
