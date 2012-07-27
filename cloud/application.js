@@ -56,4 +56,5 @@ io.sockets.on('connection', function(socket) {
   });
 });
 
+console.log('Listen port:' + process.env.FH_PORT);
 app.listen(process.env.FH_PORT);
